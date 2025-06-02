@@ -58,6 +58,15 @@ func ExtractOwnerRepo(url string) string {
 	}
 	owner := parts[len(parts)-2]
 	repo := parts[len(parts)-1]
+	
+	// Truncate long names to prevent filesystem errors
+	if len(owner) > 100 {
+		owner = owner[:100]
+	}
+	if len(repo) > 100 {
+		repo = repo[:100]
+	}
+	
 	return owner + "/" + repo
 }
 
