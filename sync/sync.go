@@ -3,11 +3,12 @@ package sync
 import (
 	"crypto/sha256"
 	"fmt"
-	"github.com/nathfavour/docxed/gitutil"
 	"io"
 	"log"
 	"os"
 	"path/filepath"
+
+	"github.com/nathfavour/docxed/gitutil"
 )
 
 func ProcessDocxFolder(docxPath, destDocxDir string) {
@@ -57,13 +58,13 @@ func SyncDocxFiles(sourceDir, destDir string) {
 		}
 
 		destPath := filepath.Join(destDir, relPath)
-		
+
 		// Check if path is too long (prevent filesystem errors)
 		if len(destPath) > 4000 { // Leave some buffer under typical 4096 limit
 			log.Printf("Skipping file with path too long: %s", path)
 			return nil
 		}
-		
+
 		destDirPath := filepath.Dir(destPath)
 		if err := os.MkdirAll(destDirPath, 0755); err != nil {
 			log.Printf("Error creating directory %s: %v", destDirPath, err)
