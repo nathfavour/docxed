@@ -83,6 +83,18 @@
 
 ---
 
+### 5. user
+- **ID:** user
+- **Purpose:** store important user info and track masterpassword creation.
+- **Attributes:**
+    - userId: string, required
+    - email: string, required
+    - masterpass: boolean, optional (default, false)
+
+- **Indexes:**
+    - userId (key)
+    - masterpass (key) (useful possibly for sending custom in-app reminding users with no masterpassword )
+
 ## Relationships
 - Users (Appwrite Auth) 1:N Credentials (via userId)
 - Users 1:N TOTPSecrets (via userId)
