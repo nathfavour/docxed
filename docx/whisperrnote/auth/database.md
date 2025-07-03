@@ -93,7 +93,7 @@
 
 - **Indexes:**
     - userId (key)
-    - masterpass (key) (useful possibly for sending custom in-app reminding users with no masterpassword )
+
 
 ## Relationships
 - Users (Appwrite Auth) 1:N Credentials (via userId)
