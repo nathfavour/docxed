@@ -15,7 +15,7 @@
 go.work
 
 # Built binary
-docxed
+# docxed
 
 # IDE files
 .vscode/
