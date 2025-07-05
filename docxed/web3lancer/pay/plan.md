@@ -11,3 +11,5 @@ Key features are:
 We are building this open source on chain
 
 We will primarily be using appwrite, nextjs and vercel
+
+all logics to be extremely modular, reusable, interoperable seamlessly and agnostic.

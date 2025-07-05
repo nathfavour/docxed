@@ -1,4 +1,4 @@
- tree --gitignore
+tree --gitignore                    
 .
 ├── appwrite.json
 ├── contracts
@@ -29,6 +29,14 @@
 │   │   │       └── route.ts
 │   │   └── test
 │   ├── app
+│   │   ├── accounts
+│   │   │   ├── accountsClient.tsx
+│   │   │   ├── create
+│   │   │   │   ├── createClient.tsx
+│   │   │   │   └── page.tsx
+│   │   │   ├── [id]
+│   │   │   │   └── page.tsx
+│   │   │   └── page.tsx
 │   │   ├── auth
 │   │   │   ├── AuthClient.tsx
 │   │   │   ├── complete-profile
@@ -43,6 +51,14 @@
 │   │   │   │   └── page.tsx
 │   │   │   └── verify
 │   │   │       └── page.tsx
+│   │   ├── cards
+│   │   │   ├── cardsClient.tsx
+│   │   │   ├── create
+│   │   │   │   ├── createClient.tsx
+│   │   │   │   ├── [id]
+│   │   │   │   │   └── page.tsx
+│   │   │   │   └── page.tsx
+│   │   │   └── page.tsx
 │   │   ├── DashboardClient.tsx
 │   │   ├── exchange
 │   │   │   ├── ExchangeClient.tsx
@@ -58,6 +74,7 @@
 │   │   ├── layout.tsx
 │   │   ├── not-found.tsx
 │   │   ├── page.tsx
+│   │   ├── payment-links
 │   │   ├── payment-requests
 │   │   │   └── [id]
 │   │   │       └── route.ts
@@ -90,6 +107,9 @@
 │   ├── App.css
 │   ├── App.tsx
 │   ├── components
+│   │   ├── accounts
+│   │   │   ├── AccountDetails.tsx
+│   │   │   └── AccountList.tsx
 │   │   ├── AppShell.tsx
 │   │   ├── auth
 │   │   │   ├── AuthGuard.tsx
@@ -98,6 +118,10 @@
 │   │   │   ├── OptionalAuthGuard.tsx
 │   │   │   └── ProfileCompletion.tsx
 │   │   ├── AuthGuard.tsx
+│   │   ├── cards
+│   │   │   ├── CardCreateForm.tsx
+│   │   │   ├── CardDetails.tsx
+│   │   │   └── CardList.tsx
 │   │   ├── CrossChainPayment.tsx
 │   │   ├── crypto
 │   │   │   ├── AddressInput.tsx
@@ -122,6 +146,9 @@
 │   │   │   ├── Sidebar.tsx
 │   │   │   └── TopBar.tsx
 │   │   ├── LoadingSpinner.tsx
+│   │   ├── payment
+│   │   │   ├── PaymentLinkForm.tsx
+│   │   │   └── PaymentLinkList.tsx
 │   │   ├── PaymentInterface.tsx
 │   │   ├── PriceDisplay.tsx
 │   │   ├── profile
@@ -147,8 +174,10 @@
 │   ├── config
 │   │   └── chains.ts
 │   ├── contexts
+│   │   ├── AccountContext.tsx
 │   │   ├── AuthContextClient.tsx
 │   │   ├── AuthContext.tsx
+│   │   ├── CardContext.tsx
 │   │   ├── ExchangeRateContextClient.tsx
 │   │   ├── ExchangeRateContext.tsx
 │   │   ├── PaymentRequestContextClient.tsx
@@ -178,8 +207,10 @@
 │   ├── middleware.ts
 │   ├── services
 │   │   └── ccipService.ts
+│   ├── types
+│   │   └── appwrite.d.ts
 │   └── utils
 │       └── index.ts
 └── tsconfig.json
 
-51 directories, 131 files
+62 directories, 151 files
