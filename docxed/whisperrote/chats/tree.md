@@ -27,8 +27,7 @@ tree --gitignore
 │   │   ├── RecoverySettings.tsx
 │   │   └── ExtensionSettings.tsx
 │   ├── auth
-│   │   ├── LoginPanel.tsx
-│   │   ├── RegisterPanel.tsx
+│   │   ├── ContinuePanel.tsx      # Unified login/continue panel (replaces LoginPanel/RegisterPanel)
 │   │   ├── RecoveryPanel.tsx
 │   │   └── TwoFactorPanel.tsx
 │   ├── panels
@@ -146,37 +145,4 @@ tree --gitignore
 │   ├── vercel.svg
 │   └── window.svg
 ├── tsconfig.json
-└── types
-    └── appwrite.d.ts
 
-4 directories, 18 files
-│   └── utils.ts
-├── patterns
-│   ├── geometric.ts
-│   ├── emoji.ts
-│   ├── doodle.ts
-│   └── PatternSelector.tsx
-├── animations
-│   ├── levels.ts
-│   ├── transitions.ts
-│   ├── CircularWipe.tsx
-│   ├── StickerAnimations.tsx
-│   └── AnimationPreview.tsx
-├── README.md
-├── appwrite.json
-├── eslint.config.mjs
-├── next.config.ts
-├── package.json
-├── pnpm-lock.yaml
-├── postcss.config.mjs
-├── public
-│   ├── file.svg
-│   ├── globe.svg
-│   ├── next.svg
-│   ├── vercel.svg
-│   └── window.svg
-├── tsconfig.json
-└── types
-    └── appwrite.d.ts
-
-4 directories, 18 files
