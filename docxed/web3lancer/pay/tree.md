@@ -1,4 +1,4 @@
-tree --gitignore                    
+tree --gitignore
 .
 ├── appwrite.json
 ├── contracts
@@ -71,10 +71,14 @@ tree --gitignore
 │   │   ├── home
 │   │   │   └── page.tsx
 │   │   ├── HomeClient.tsx
+│   │   ├── layoutClient.tsx
 │   │   ├── layout.tsx
 │   │   ├── not-found.tsx
 │   │   ├── page.tsx
 │   │   ├── payment-links
+│   │   │   └── [id]
+│   │   │       ├── page.tsx
+│   │   │       └── paymentLinkClient.tsx
 │   │   ├── payment-requests
 │   │   │   └── [id]
 │   │   │       └── route.ts
@@ -99,6 +103,11 @@ tree --gitignore
 │   │   │   └── SettingsClient.tsx
 │   │   ├── transactions
 │   │   │   └── page.tsx
+│   │   ├── [u]
+│   │   │   └── [username]
+│   │   │       ├── page.tsx
+│   │   │       └── [paymentId]
+│   │   │           └── page.tsx
 │   │   └── wallets
 │   │       ├── create
 │   │       │   └── page.tsx
@@ -110,7 +119,6 @@ tree --gitignore
 │   │   ├── accounts
 │   │   │   ├── AccountDetails.tsx
 │   │   │   └── AccountList.tsx
-│   │   ├── AppShell.tsx
 │   │   ├── auth
 │   │   │   ├── AuthGuard.tsx
 │   │   │   ├── GuestConversion.tsx
@@ -175,7 +183,6 @@ tree --gitignore
 │   │   └── chains.ts
 │   ├── contexts
 │   │   ├── AccountContext.tsx
-│   │   ├── AuthContextClient.tsx
 │   │   ├── AuthContext.tsx
 │   │   ├── CardContext.tsx
 │   │   ├── ExchangeRateContextClient.tsx
@@ -188,9 +195,38 @@ tree --gitignore
 │   │   └── WalletContext.tsx
 │   ├── hooks
 │   │   └── useBlessNetwork.ts
+│   ├── integrations
+│   │   ├── blend-stellar
+│   │   │   ├── components
+│   │   │   │   ├── BlendPoolWidget.tsx
+│   │   │   │   └── StellarContractWidget.tsx
+│   │   │   ├── config
+│   │   │   │   └── index.ts
+│   │   │   ├── hooks
+│   │   │   │   └── useBlendPool.ts
+│   │   │   ├── index.ts
+│   │   │   ├── README.md
+│   │   │   ├── sdk
+│   │   │   │   └── index.ts
+│   │   │   ├── services
+│   │   │   │   ├── backstop.service.ts
+│   │   │   │   ├── pool.service.ts
+│   │   │   │   └── user.service.ts
+│   │   │   ├── types
+│   │   │   │   └── index.ts
+│   │   │   └── utils
+│   │   │       └── index.ts
+│   │   ├── filecoin
+│   │   │   └── client.ts
+│   │   └── usdfc
+│   │       ├── client.ts
+│   │       ├── collateral.ts
+│   │       ├── markets.ts
+│   │       ├── orders.ts
+│   │       ├── positions.ts
+│   │       └── utils.ts
 │   ├── lib
 │   │   ├── appwrite.ts
-│   │   ├── auth.ts
 │   │   ├── database.ts
 │   │   ├── debug-db.ts
 │   │   ├── exchangeRates.ts
@@ -213,4 +249,4 @@ tree --gitignore
 │       └── index.ts
 └── tsconfig.json
 
-62 directories, 151 files
+77 directories, 172 files

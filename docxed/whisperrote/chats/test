@@ -1,0 +1,157 @@
+appwrite databases --help
+Usage: index databases [options] [command]
+
+The databases command allows you to create structured collections of documents and query and filter lists of documents.
+
+Options:
+  -h, --help                               display help for command
+
+Commands:
+  list [options]                           Get a list of all databases from the current Appwrite
+                                           project. You can use the search parameter to filter your
+                                           results.
+  create [options]                         Create a new Database.
+  get-usage [options]                      Get usage metrics and statistics for all databases in
+                                           the project. You can view the total number of databases,
+                                           collections, documents, and storage usage. The response
+                                           includes both current totals and historical data over
+                                           time. Use the optional range parameter to specify the
+                                           time window for historical data: 24h (last 24 hours),
+                                           30d (last 30 days), or 90d (last 90 days). If not
+                                           specified, range defaults to 30 days.
+  get [options]                            Get a database by its unique ID. This endpoint response
+                                           returns a JSON object with the database metadata.
+  update [options]                         Update a database by its unique ID.
+  delete [options]                         Delete a database by its unique ID. Only API keys with
+                                           with databases.write scope can delete a database.
+  list-collections [options]               Get a list of all collections that belong to the
+                                           provided databaseId. You can use the search parameter to
+                                           filter your results.
+  create-collection [options]              Create a new Collection. Before using this route, you
+                                           should create a new database resource using either a
+                                           [server
+                                           integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
+                                           API or directly from your database console.
+  get-collection [options]                 Get a collection by its unique ID. This endpoint
+                                           response returns a JSON object with the collection
+                                           metadata.
+  update-collection [options]              Update a collection by its unique ID.
+  delete-collection [options]              Delete a collection by its unique ID. Only users with
+                                           write permissions have access to delete this resource.
+  list-attributes [options]                List attributes in the collection.
+  create-boolean-attribute [options]       Create a boolean attribute.
+  update-boolean-attribute [options]       Update a boolean attribute. Changing the 'default' value
+                                           will not update already existing documents.
+  create-datetime-attribute [options]      Create a date time attribute according to the ISO 8601
+                                           standard.
+  update-datetime-attribute [options]      Update a date time attribute. Changing the 'default'
+                                           value will not update already existing documents.
+  create-email-attribute [options]         Create an email attribute.
+  update-email-attribute [options]         Update an email attribute. Changing the 'default' value
+                                           will not update already existing documents.
+  create-enum-attribute [options]          Create an enumeration attribute. The 'elements' param
+                                           acts as a white-list of accepted values for this
+                                           attribute.
+  update-enum-attribute [options]          Update an enum attribute. Changing the 'default' value
+                                           will not update already existing documents.
+  create-float-attribute [options]         Create a float attribute. Optionally, minimum and
+                                           maximum values can be provided.
+  update-float-attribute [options]         Update a float attribute. Changing the 'default' value
+                                           will not update already existing documents.
+  create-integer-attribute [options]       Create an integer attribute. Optionally, minimum and
+                                           maximum values can be provided.
+  update-integer-attribute [options]       Update an integer attribute. Changing the 'default'
+                                           value will not update already existing documents.
+  create-ip-attribute [options]            Create IP address attribute.
+  update-ip-attribute [options]            Update an ip attribute. Changing the 'default' value
+                                           will not update already existing documents.
+  create-relationship-attribute [options]  Create relationship attribute. [Learn more about
+                                           relationship
+                                           attributes](https://appwrite.io/docs/databases-relationships#relationship-attributes).
+  create-string-attribute [options]        Create a string attribute.
+  update-string-attribute [options]        Update a string attribute. Changing the 'default' value
+                                           will not update already existing documents.
+  create-url-attribute [options]           Create a URL attribute.
+  update-url-attribute [options]           Update an url attribute. Changing the 'default' value
+                                           will not update already existing documents.
+  get-attribute [options]                  Get attribute by ID.
+  delete-attribute [options]               Deletes an attribute.
+  update-relationship-attribute [options]  Update relationship attribute. [Learn more about
+                                           relationship
+                                           attributes](https://appwrite.io/docs/databases-relationships#relationship-attributes).
+  list-documents [options]                 Get a list of all the user's documents in a given
+                                           collection. You can use the query params to filter your
+                                           results.
+  create-document [options]                Create a new Document. Before using this route, you
+                                           should create a new collection resource using either a
+                                           [server
+                                           integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
+                                           API or directly from your database console.
+  create-documents [options]               **WARNING: Experimental Feature** - This endpoint is
+                                           experimental and not yet officially supported. It may be
+                                           subject to breaking changes or removal in future
+                                           versions.  Create new Documents. Before using this
+                                           route, you should create a new collection resource using
+                                           either a [server
+                                           integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
+                                           API or directly from your database console.
+  upsert-documents [options]               **WARNING: Experimental Feature** - This endpoint is
+                                           experimental and not yet officially supported. It may be
+                                           subject to breaking changes or removal in future
+                                           versions.  Create or update Documents. Before using this
+                                           route, you should create a new collection resource using
+                                           either a [server
+                                           integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
+                                           API or directly from your database console.
+  update-documents [options]               **WARNING: Experimental Feature** - This endpoint is
+                                           experimental and not yet officially supported. It may be
+                                           subject to breaking changes or removal in future
+                                           versions.  Update all documents that match your queries,
+                                           if no queries are submitted then all documents are
+                                           updated. You can pass only specific fields to be
+                                           updated.
+  delete-documents [options]               **WARNING: Experimental Feature** - This endpoint is
+                                           experimental and not yet officially supported. It may be
+                                           subject to breaking changes or removal in future
+                                           versions.  Bulk delete documents using queries, if no
+                                           queries are passed then all documents are deleted.
+  get-document [options]                   Get a document by its unique ID. This endpoint response
+                                           returns a JSON object with the document data.
+  upsert-document [options]                **WARNING: Experimental Feature** - This endpoint is
+                                           experimental and not yet officially supported. It may be
+                                           subject to breaking changes or removal in future
+                                           versions.  Create or update a Document. Before using
+                                           this route, you should create a new collection resource
+                                           using either a [server
+                                           integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
+                                           API or directly from your database console.
+  update-document [options]                Update a document by its unique ID. Using the patch
+                                           method you can pass only specific fields that will get
+                                           updated.
+  delete-document [options]                Delete a document by its unique ID.
+  list-document-logs [options]             Get the document activity logs list by its unique ID.
+  list-indexes [options]                   List indexes in the collection.
+  create-index [options]                   Creates an index on the attributes listed. Your index
+                                           should include all the attributes you will query in a
+                                           single request. Attributes can be 'key', 'fulltext', and
+                                           'unique'.
+  get-index [options]                      Get index by ID.
+  delete-index [options]                   Delete an index.
+  list-collection-logs [options]           Get the collection activity logs list by its unique ID.
+  get-collection-usage [options]           Get usage metrics and statistics for a collection.
+                                           Returning the total number of documents. The response
+                                           includes both current totals and historical data over
+                                           time. Use the optional range parameter to specify the
+                                           time window for historical data: 24h (last 24 hours),
+                                           30d (last 30 days), or 90d (last 90 days). If not
+                                           specified, range defaults to 30 days.
+  list-logs [options]                      Get the database activity logs list by its unique ID.
+  get-database-usage [options]             Get usage metrics and statistics for a database. You can
+                                           view the total number of collections, documents, and
+                                           storage usage. The response includes both current totals
+                                           and historical data over time. Use the optional range
+                                           parameter to specify the time window for historical
+                                           data: 24h (last 24 hours), 30d (last 30 days), or 90d
+                                           (last 90 days). If not specified, range defaults to 30
+                                           days.
+  help [command]                           display help for command
