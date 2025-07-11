@@ -1,0 +1,31 @@
+- TMessagesProj/src/main/java/org/telegram/ui/ProfileActivity.java
+- TMessagesProj/src/main/java/org/telegram/ui/BusinessProfileActivity.java
+- TMessagesProj/src/main/java/org/telegram/ui/GroupProfileActivity.java
+- TMessagesProj/src/main/java/org/telegram/ui/ChannelProfileActivity.java
+- TMessagesProj/src/main/java/org/telegram/ui/Components/ProfileTabsView.java
+- TMessagesProj/src/main/java/org/telegram/ui/Components/GiftDisplayView.java
+- TMessagesProj/src/main/java/org/telegram/ui/Components/FloatingIconsView.java
+- TMessagesProj/src/main/java/org/telegram/ui/Components/ProfileHeaderView.java
+- TMessagesProj/src/main/java/org/telegram/ui/Components/ProfileInfoView.java
+- TMessagesProj/src/main/java/org/telegram/ui/Components/ProfilePhotoView.java
+- TMessagesProj/src/main/java/org/telegram/ui/Components/ProfileTransitionHelper.java
+- TMessagesProj/src/main/res/layout/activity_profile.xml
+- TMessagesProj/src/main/res/layout/activity_business_profile.xml
+- TMessagesProj/src/main/res/layout/activity_group_profile.xml
+- TMessagesProj/src/main/res/layout/activity_channel_profile.xml
+- TMessagesProj/src/main/res/layout/view_profile_tabs.xml
+- TMessagesProj/src/main/res/layout/view_gift_display.xml
+- TMessagesProj/src/main/res/layout/view_floating_icons.xml
+- TMessagesProj/src/main/res/layout/view_profile_header.xml
+- TMessagesProj/src/main/res/layout/view_profile_info.xml
+- TMessagesProj/src/main/res/layout/view_profile_photo.xml
+- TMessagesProj/src/main/res/values/styles.xml
+- TMessagesProj/src/main/res/values-night/styles.xml
+- TMessagesProj/src/main/res/values/colors.xml
+- TMessagesProj/src/main/res/values-night/colors.xml
+- TMessagesProj/src/main/res/drawable/ (all icons and images for profiles, gifts, floating icons)
+- TMessagesProj/src/main/res/drawable-night/ (night theme icons)
+- TMessagesProj/src/main/res/anim/ (profile transitions)
+- TMessagesProj/src/main/res/font/ (custom fonts for profile screens)
+- TMessagesProj/src/main/assets/ (custom assets, if any)
+- TMessagesProj/src/main/java/org/telegram/ui/SettingsActivity.java (optional: for bonus Settings redesign)
