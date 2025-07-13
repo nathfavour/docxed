@@ -1,0 +1,1 @@
+also contracts.md and let's flesh out the contract  and then integrate it into existing src/integrations/umi, then finally adjust the integrations into the main application /profile to contain the new integration modification.
