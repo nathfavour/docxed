@@ -4,150 +4,165 @@ This proposal builds upon the current Appwrite database schema, adding new colle
 
 ---
 
-## 1. Notes Collection (Extend Existing)
+## Full Database Structure (Tabular Overview)
 
-- Add support for attachments (file IDs)
-- Add support for comments (comment IDs)
-- Add support for reactions (emoji, count)
-- Add support for extensions/plugins (extension IDs)
-- Add support for collaborators (user IDs, permissions)
-- Add support for note status (draft, published, archived)
-- Add support for parent/child notes (for hierarchical notes/outlines)
-- Add support for custom metadata (key-value pairs)
+### 1. Users Collection
 
-**New/Extended Attributes:**
-- `attachments: string[] | null` (File IDs)
-- `comments: string[] | null` (Comment IDs)
-- `reactions: { emoji: string, count: number }[] | null`
-- `extensions: string[] | null` (Extension IDs)
-- `collaborators: { userId: string, permission: string }[] | null`
-- `status: 'draft' | 'published' | 'archived' | null`
-- `parentNoteId: string | null`
-- `metadata: Record<string, any> | null`
+| Attribute      | Type      | Required | Array | Description                |
+|----------------|-----------|----------|-------|----------------------------|
+| id             | string    | No       | No    | User ID                    |
+| email          | string    | No       | No    | Email address              |
+| name           | string    | No       | No    | Name                       |
+| walletAddress  | string    | No       | No    | Wallet address             |
+| createdAt      | datetime  | No       | No    | Creation timestamp         |
+| updatedAt      | datetime  | No       | No    | Last update timestamp      |
 
 ---
 
-## 2. Comments Collection (New)
+### 2. Notes Collection
 
-- For note comments, threaded discussions
-
-**Attributes:**
-- `id: string`
-- `noteId: string`
-- `userId: string`
-- `content: string`
-- `createdAt: datetime`
-- `parentCommentId: string | null` (for threads)
-
----
-
-## 3. Extensions Collection (New)
-
-- For future extensibility (plugins, integrations, custom features)
-
-**Attributes:**
-- `id: string`
-- `name: string`
-- `description: string`
-- `version: string`
-- `authorId: string`
-- `enabled: boolean`
-- `settings: Record<string, any> | null`
-- `createdAt: datetime`
-- `updatedAt: datetime`
+| Attribute        | Type      | Required | Array | Description                                 |
+|------------------|-----------|----------|-------|---------------------------------------------|
+| id               | string    | No       | No    | Note ID                                     |
+| title            | string    | No       | No    | Note title                                  |
+| content          | string    | No       | No    | Note content                                |
+| createdAt        | datetime  | No       | No    | Creation timestamp                          |
+| updatedAt        | datetime  | No       | No    | Last update timestamp                       |
+| userId           | string    | No       | No    | Owner user ID                               |
+| isPublic         | boolean   | No       | No    | Public visibility                           |
+| tags             | string    | No       | Yes   | Associated tag IDs                          |
+| attachments      | string    | No       | Yes   | File IDs for attachments                    |
+| comments         | string    | No       | Yes   | Comment IDs                                 |
+| extensions       | string    | No       | Yes   | Extension IDs                               |
+| collaborators    | string    | No       | Yes   | Collaborator IDs                            |
+| status           | enum      | No       | No    | 'draft', 'published', 'archived'            |
+| parentNoteId     | string    | No       | No    | Parent note ID (for hierarchy)              |
+| metadata         | string    | No       | No    | Custom metadata (JSON string)               |
 
 ---
 
-## 4. Reactions Collection (New, Optional)
+### 3. Tags Collection
 
-- For tracking reactions on notes/comments
-
-**Attributes:**
-- `id: string`
-- `targetType: 'note' | 'comment'`
-- `targetId: string`
-- `userId: string`
-- `emoji: string`
-- `createdAt: datetime`
-
----
-
-## 5. Collaborators (Embedded in Notes, or Separate Collection)
-
-- For real-time collaboration, permissions
-
-**Attributes (if separate):**
-- `id: string`
-- `noteId: string`
-- `userId: string`
-- `permission: 'read' | 'write' | 'admin'`
-- `invitedAt: datetime`
-- `accepted: boolean`
+| Attribute      | Type      | Required | Array | Description                |
+|----------------|-----------|----------|-------|----------------------------|
+| id             | string    | No       | No    | Tag ID                     |
+| name           | string    | No       | No    | Tag name                   |
+| notes          | string    | No       | Yes   | Associated note IDs        |
+| createdAt      | datetime  | No       | No    | Creation timestamp         |
+| color          | string    | No       | No    | Tag color                  |
+| description    | string    | No       | No    | Tag description            |
+| usageCount     | integer   | No       | No    | Usage count                |
 
 ---
 
-## 6. BlogPosts Collection (Extend Existing)
+### 4. ApiKeys Collection
 
-- Add support for tags, cover image, excerpt, status, comments, reactions, extensions
-
-**New/Extended Attributes:**
-- `tags: string[] | null`
-- `coverImage: string | null` (File ID)
-- `excerpt: string | null`
-- `status: 'draft' | 'published' | 'archived' | null`
-- `comments: string[] | null`
-- `reactions: { emoji: string, count: number }[] | null`
-- `extensions: string[] | null`
-- `metadata: Record<string, any> | null`
-
----
-
-## 7. Tags Collection (Extend Existing)
-
-- Add support for tag color, description, usage count
-
-**New/Extended Attributes:**
-- `color: string | null`
-- `description: string | null`
-- `usageCount: number | null`
+| Attribute      | Type      | Required | Array | Description                |
+|----------------|-----------|----------|-------|----------------------------|
+| id             | string    | No       | No    | API Key ID                 |
+| key            | string    | No       | No    | API Key                    |
+| name           | string    | No       | No    | API Key name               |
+| userId         | string    | No       | No    | Owner user ID              |
+| createdAt      | datetime  | No       | No    | Creation timestamp         |
+| lastUsed       | datetime  | No       | No    | Last used timestamp        |
+| expiresAt      | datetime  | No       | No    | Expiry timestamp           |
+| scopes         | string    | No       | Yes   | Scopes/permissions         |
+| lastUsedIp     | string    | No       | No    | Last used IP address       |
 
 ---
 
-## 8. ApiKeys Collection (Extend Existing)
+### 5. BlogPosts Collection
 
-- Add support for scopes/permissions, last used IP
-
-**New/Extended Attributes:**
-- `scopes: string[] | null`
-- `lastUsedIp: string | null`
-
----
-
-## 9. Activity Log Collection (New)
-
-- For auditing, tracking actions (create, update, delete, share, etc.)
-
-**Attributes:**
-- `id: string`
-- `userId: string`
-- `action: string`
-- `targetType: string`
-- `targetId: string`
-- `timestamp: datetime`
-- `details: Record<string, any> | null`
+| Attribute      | Type      | Required | Array | Description                |
+|----------------|-----------|----------|-------|----------------------------|
+| id             | string    | No       | No    | Blog post ID               |
+| title          | string    | No       | No    | Blog post title            |
+| content        | string    | No       | No    | Blog post content          |
+| createdAt      | datetime  | No       | No    | Creation timestamp         |
+| updatedAt      | datetime  | No       | No    | Last update timestamp      |
+| authorId       | string    | No       | No    | Author user ID             |
+| tags           | string    | No       | Yes   | Associated tag IDs         |
+| coverImage     | string    | No       | No    | Cover image file ID        |
+| excerpt        | string    | No       | No    | Blog post excerpt          |
+| status         | enum      | No       | No    | 'draft', 'published', 'archived' |
+| comments       | string    | No       | Yes   | Comment IDs                |
+| extensions     | string    | No       | Yes   | Extension IDs              |
+| metadata       | string    | No       | No    | Custom metadata (JSON)     |
 
 ---
 
-## 10. Settings Collection (New)
+### 6. Comments Collection
 
-- For user or workspace settings, preferences
+| Attribute        | Type      | Required | Array | Description                |
+|------------------|-----------|----------|-------|----------------------------|
+| noteId           | string    | Yes      | No    | Associated note ID         |
+| userId           | string    | Yes      | No    | Commenting user ID         |
+| content          | string    | Yes      | No    | Comment content            |
+| createdAt        | datetime  | Yes      | No    | Creation timestamp         |
+| parentCommentId  | string    | No       | No    | Parent comment ID (thread) |
 
-**Attributes:**
-- `id: string`
-- `userId: string`
-- `settings: Record<string, any>`
-- `createdAt: datetime`
-- `updatedAt: datetime`
+---
+
+### 7. Extensions Collection
+
+| Attribute      | Type      | Required | Array | Description                |
+|----------------|-----------|----------|-------|----------------------------|
+| name           | string    | Yes      | No    | Extension name             |
+| description    | string    | No       | No    | Extension description      |
+| version        | string    | No       | No    | Extension version          |
+| authorId       | string    | No       | No    | Author user ID             |
+| enabled        | boolean   | No       | No    | Enabled status             |
+| settings       | string    | No       | No    | Extension settings (JSON)  |
+| createdAt      | datetime  | No       | No    | Creation timestamp         |
+| updatedAt      | datetime  | No       | No    | Last update timestamp      |
+
+---
+
+### 8. Reactions Collection
+
+| Attribute      | Type      | Required | Array | Description                |
+|----------------|-----------|----------|-------|----------------------------|
+| targetType     | enum      | Yes      | No    | 'note', 'comment'          |
+| targetId       | string    | Yes      | No    | Target note/comment ID     |
+| userId         | string    | Yes      | No    | Reacting user ID           |
+| emoji          | string    | Yes      | No    | Emoji                      |
+| createdAt      | datetime  | Yes      | No    | Creation timestamp         |
+
+---
+
+### 9. Collaborators Collection
+
+| Attribute      | Type      | Required | Array | Description                |
+|----------------|-----------|----------|-------|----------------------------|
+| noteId         | string    | Yes      | No    | Associated note ID         |
+| userId         | string    | Yes      | No    | Collaborator user ID       |
+| permission     | enum      | Yes      | No    | 'read', 'write', 'admin'   |
+| invitedAt      | datetime  | No       | No    | Invitation timestamp       |
+| accepted       | boolean   | No       | No    | Accepted status            |
+
+---
+
+### 10. ActivityLog Collection
+
+| Attribute      | Type      | Required | Array | Description                |
+|----------------|-----------|----------|-------|----------------------------|
+| userId         | string    | Yes      | No    | Acting user ID             |
+| action         | string    | Yes      | No    | Action performed           |
+| targetType     | string    | Yes      | No    | Target type                |
+| targetId       | string    | Yes      | No    | Target ID                  |
+| timestamp      | datetime  | Yes      | No    | Timestamp                  |
+| details        | string    | No       | No    | Additional details (JSON)  |
+
+---
+
+### 11. Settings Collection
+
+| Attribute      | Type      | Required | Array | Description                |
+|----------------|-----------|----------|-------|----------------------------|
+| userId         | string    | Yes      | No    | User ID                    |
+| settings       | string    | Yes      | No    | Settings (JSON)            |
+| createdAt      | datetime  | No       | No    | Creation timestamp         |
+| updatedAt      | datetime  | No       | No    | Last update timestamp      |
 
 ---
 
