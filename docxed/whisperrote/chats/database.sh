@@ -20,6 +20,7 @@ appwrite databases create-string-attribute   --database-id "core" --collection-i
 appwrite databases create-datetime-attribute --database-id "core" --collection-id "users" --key "createdAt"   --required true
 appwrite databases create-datetime-attribute --database-id "core" --collection-id "users" --key "lastSeen"    --required false
 appwrite databases create-enum-attribute --database-id "core" --collection-id "users" --key "status" --elements online offline away --required false
+appwrite databases create-boolean-attribute --database-id "core" --collection-id "users" --key "deleted" --required false
 
 # Wait for attributes to be available
 sleep 10
@@ -43,6 +44,7 @@ appwrite databases create-datetime-attribute     --database-id "core" --collecti
 appwrite databases create-datetime-attribute     --database-id "core" --collection-id "chats" --key "updatedAt"   --required true
 appwrite databases create-boolean-attribute      --database-id "core" --collection-id "chats" --key "isEncrypted" --required false
 appwrite databases create-string-attribute       --database-id "core" --collection-id "chats" --key "extensionType" --size 32 --required false
+appwrite databases create-boolean-attribute      --database-id "core" --collection-id "chats" --key "deleted" --required false
 
 sleep 10
 
@@ -59,6 +61,7 @@ appwrite databases create-relationship-attribute --database-id "core" --collecti
 appwrite databases create-enum-attribute         --database-id "core" --collection-id "chatmembers" --key "role"   --elements admin,member,owner,bot,extension --required true
 appwrite databases create-datetime-attribute     --database-id "core" --collection-id "chatmembers" --key "joinedAt" --required true
 appwrite databases create-datetime-attribute     --database-id "core" --collection-id "chatmembers" --key "mutedUntil" --required false
+appwrite databases create-boolean-attribute      --database-id "core" --collection-id "chatmembers" --key "deleted" --required false
 
 sleep 10
 
@@ -79,6 +82,7 @@ appwrite databases create-datetime-attribute     --database-id "core" --collecti
 appwrite databases create-relationship-attribute --database-id "core" --collection-id "messages" --key "replyTo"      --related-collection-id "messages" --type "oneToOne" 
 appwrite databases create-boolean-attribute      --database-id "core" --collection-id "messages" --key "isDeleted"    --required false
 appwrite databases create-string-attribute       --database-id "core" --collection-id "messages" --key "extensionPayload" --size 1000 --required false
+appwrite databases create-boolean-attribute      --database-id "core" --collection-id "messages" --key "deleted" --required false
 
 sleep 10
 
@@ -95,6 +99,7 @@ appwrite databases create-relationship-attribute --database-id "core" --collecti
 # appwrite databases create-relationship-attribute --database-id "core" --collection-id "contacts" --key "contactId" --related-collection-id "users" --type "oneToOne" 
 appwrite databases create-datetime-attribute     --database-id "core" --collection-id "contacts" --key "createdAt" --required true
 appwrite databases create-string-attribute       --database-id "core" --collection-id "contacts" --key "alias"     --size 64 --required false
+appwrite databases create-boolean-attribute      --database-id "core" --collection-id "contacts" --key "deleted" --required false
 
 sleep 10
 
@@ -109,6 +114,7 @@ appwrite databases create-relationship-attribute --database-id "core" --collecti
 appwrite databases create-string-attribute       --database-id "core" --collection-id "devices" --key "deviceType" --size 32   --required true
 appwrite databases create-string-attribute       --database-id "core" --collection-id "devices" --key "pushToken"  --size 255  --required false
 appwrite databases create-datetime-attribute     --database-id "core" --collection-id "devices" --key "lastActive" --required true
+appwrite databases create-boolean-attribute      --database-id "core" --collection-id "devices" --key "deleted" --required false
 
 sleep 10
 

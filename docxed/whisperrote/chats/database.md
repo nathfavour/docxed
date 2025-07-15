@@ -4,10 +4,13 @@ This document outlines the recommended Appwrite database schema for a secure, ex
 
 ---
 
-## Databases
+## RxDB Offline Sync Integration
 
-- **core**: Main chat and user data
-- **extensions**: Integrations, bots, web3, wallets, etc.
+- To support RxDB offline sync, each collection that will be replicated should include a `deleted` (Boolean) attribute.
+- RxDB uses this field for soft deletion; documents are never hard deleted, only marked as deleted.
+- Collections intended for offline sync: Users, Chats, ChatMembers, Messages, Contacts, Devices, etc.
+- Ensure all attributes are flat (no nested objects/arrays except for simple arrays of strings or numbers).
+- Avoid complex relationships or deeply nested data for RxDB compatibility.
 
 ---
 
@@ -39,6 +42,7 @@ This document outlines the recommended Appwrite database schema for a secure, ex
   - `encryptionKeyExported` (Boolean, default: false) // Has user exported their E2E key
   - `recoveryPhraseBackedUp` (Boolean, default: false) // Has user confirmed backup of recovery phrase
   - `encryptedPrivateKey` (String, required, maxLength: 2000) // User's private key, encrypted with key derived from recovery phrase
+  - `deleted` (Boolean, default: false) // For RxDB soft deletion
 - **Indexes:**
   - `userId` (unique)
   - `username` (unique)
@@ -62,6 +66,7 @@ This document outlines the recommended Appwrite database schema for a secure, ex
   - `updatedAt` (Datetime, indexed)
   - `isEncrypted` (Boolean, default: true)
   - `extensionType` (String, optional, maxLength: 32) // For future integrations
+  - `deleted` (Boolean, default: false) // For RxDB soft deletion
 - **Indexes:**
   - `chatId` (unique)
   - `type` (non-unique)
@@ -79,6 +84,7 @@ This document outlines the recommended Appwrite database schema for a secure, ex
   - `role` (Enum: admin, member, owner, bot, extension, required)
   - `joinedAt` (Datetime)
   - `mutedUntil` (Datetime, optional)
+  - `deleted` (Boolean, default: false) // For RxDB soft deletion
 - **Indexes:**
   - _(Note: Composite unique index (`chatId`, `userId`) is **not supported** on relationship fields in Appwrite. Enforce this uniqueness in your application logic.)_
   - _(Note: Appwrite automatically indexes relationship fields for queries, but you cannot add a custom index on `userId` or `chatId`.)_
@@ -100,6 +106,7 @@ This document outlines the recommended Appwrite database schema for a secure, ex
   - `replyTo` (Relationship: messageId, optional)
   - `isDeleted` (Boolean, default: false)
   - `extensionPayload` (String, optional, maxLength: 1000) // JSON as string, parse/stringify on frontend
+  - `deleted` (Boolean, default: false) // For RxDB soft deletion
 - **Indexes:**
   - `messageId` (unique)
   - `createdAt` (non-unique)
@@ -116,6 +123,7 @@ This document outlines the recommended Appwrite database schema for a secure, ex
   - `contactId` (Relationship: userId, required)
   - `createdAt` (Datetime)
   - `alias` (String, optional, maxLength: 64)
+  - `deleted` (Boolean, default: false) // For RxDB soft deletion
 - **Indexes:**
   - _(Note: Composite unique index (`ownerId`, `contactId`) is **not supported** on relationship fields in Appwrite. Enforce this uniqueness in your application logic.)_
 - **Relationships:**
@@ -131,6 +139,7 @@ This document outlines the recommended Appwrite database schema for a secure, ex
   - `deviceType` (String, required, maxLength: 32)
   - `pushToken` (String, optional, maxLength: 255)
   - `lastActive` (Datetime, indexed)
+  - `deleted` (Boolean, default: false) // For RxDB soft deletion
 - **Indexes:**
   - `deviceId` (unique)
   - _(Note: Appwrite automatically indexes relationship fields for queries, but you cannot add a custom index on `userId`.)_
@@ -161,6 +170,9 @@ This document outlines the recommended Appwrite database schema for a secure, ex
 
 ## Notes
 
+- Add `deleted` boolean to all collections intended for RxDB sync.
+- Use flat schemas for best RxDB compatibility.
+- Soft deletion is handled by setting `deleted: true` instead of hard deleting documents.
 - All sensitive data (messages, user info) should be encrypted at rest and in transit.
 - All collections should support soft deletion (e.g., `isDeleted` flag).
 - For any JSON-like data, use String (max: 1000) and handle JSON parsing/stringifying on the frontend.
