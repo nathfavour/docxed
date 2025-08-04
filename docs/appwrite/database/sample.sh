@@ -26,7 +26,7 @@ appwrite databases create-string-attribute --database-id "core" --collection-id 
 appwrite databases create-enum-attribute --database-id "core" --collection-id "chats" --key "type" --elements "private,group,channel,bot,extension" --required true --array false
 appwrite databases create-string-attribute --database-id "core" --collection-id "chats" --key "title" --size 64 --required false --array false
 appwrite databases create-url-attribute --database-id "core" --collection-id "chats" --key "avatarUrl" --required false --array false
-appwrite databases create-relationship-attribute --database-id "core" --collection-id "chats" --key "createdBy" --related-collection-id "users" --type "oneToOne" --required true
+appwrite databases create-relationship-attribute --database-id "core" --collection-id "chats" --key "createdBy" --related-collection-id "users" --type "oneToOne"
 appwrite databases create-datetime-attribute --database-id "core" --collection-id "chats" --key "createdAt" --required true --array false
 appwrite databases create-datetime-attribute --database-id "core" --collection-id "chats" --key "updatedAt" --required false --array false
 appwrite databases create-boolean-attribute --database-id "core" --collection-id "chats" --key "isEncrypted" --required true --array false --default true
@@ -35,8 +35,8 @@ appwrite databases create-string-attribute --database-id "core" --collection-id 
 # --- CHATMEMBERS COLLECTION ---
 appwrite databases create-collection --database-id "core" --collection-id "chatmembers" --name "ChatMembers" --permissions 'read("any")' 'write("any")'
 
-appwrite databases create-relationship-attribute --database-id "core" --collection-id "chatmembers" --key "chatId" --related-collection-id "chats" --type "oneToOne" --required true
-appwrite databases create-relationship-attribute --database-id "core" --collection-id "chatmembers" --key "userId" --related-collection-id "users" --type "oneToOne" --required true
+appwrite databases create-relationship-attribute --database-id "core" --collection-id "chatmembers" --key "chatId" --related-collection-id "chats" --type "oneToOne"
+appwrite databases create-relationship-attribute --database-id "core" --collection-id "chatmembers" --key "userId" --related-collection-id "users" --type "oneToOne"
 appwrite databases create-enum-attribute --database-id "core" --collection-id "chatmembers" --key "role" --elements "admin,member,owner,bot,extension" --required true --array false
 appwrite databases create-datetime-attribute --database-id "core" --collection-id "chatmembers" --key "joinedAt" --required false --array false
 appwrite databases create-datetime-attribute --database-id "core" --collection-id "chatmembers" --key "mutedUntil" --required false --array false
@@ -45,21 +45,21 @@ appwrite databases create-datetime-attribute --database-id "core" --collection-i
 appwrite databases create-collection --database-id "core" --collection-id "messages" --name "Messages" --permissions 'read("any")' 'write("any")'
 
 appwrite databases create-string-attribute --database-id "core" --collection-id "messages" --key "messageId" --size 36 --required true --array false
-appwrite databases create-relationship-attribute --database-id "core" --collection-id "messages" --key "chatId" --related-collection-id "chats" --type "oneToOne" --required true
-appwrite databases create-relationship-attribute --database-id "core" --collection-id "messages" --key "senderId" --related-collection-id "users" --type "oneToOne" --required true
+appwrite databases create-relationship-attribute --database-id "core" --collection-id "messages" --key "chatId" --related-collection-id "chats" --type "oneToOne"
+appwrite databases create-relationship-attribute --database-id "core" --collection-id "messages" --key "senderId" --related-collection-id "users" --type "oneToOne"
 appwrite databases create-string-attribute --database-id "core" --collection-id "messages" --key "content" --size 5000 --required true --array false
 appwrite databases create-enum-attribute --database-id "core" --collection-id "messages" --key "type" --elements "text,image,file,audio,video,sticker,system" --required true --array false
 appwrite databases create-datetime-attribute --database-id "core" --collection-id "messages" --key "createdAt" --required true --array false
 appwrite databases create-datetime-attribute --database-id "core" --collection-id "messages" --key "editedAt" --required false --array false
-appwrite databases create-relationship-attribute --database-id "core" --collection-id "messages" --key "replyTo" --related-collection-id "messages" --type "oneToOne" --required false
+appwrite databases create-relationship-attribute --database-id "core" --collection-id "messages" --key "replyTo" --related-collection-id "messages" --type "oneToOne"
 appwrite databases create-boolean-attribute --database-id "core" --collection-id "messages" --key "isDeleted" --required true --array false --default false
 appwrite databases create-string-attribute --database-id "core" --collection-id "messages" --key "extensionPayload" --size 1000 --required false --array false
 
 # --- CONTACTS COLLECTION ---
 appwrite databases create-collection --database-id "core" --collection-id "contacts" --name "Contacts" --permissions 'read("any")' 'write("any")'
 
-appwrite databases create-relationship-attribute --database-id "core" --collection-id "contacts" --key "ownerId" --related-collection-id "users" --type "oneToOne" --required true
-appwrite databases create-relationship-attribute --database-id "core" --collection-id "contacts" --key "contactId" --related-collection-id "users" --type "oneToOne" --required true
+appwrite databases create-relationship-attribute --database-id "core" --collection-id "contacts" --key "ownerId" --related-collection-id "users" --type "oneToOne"
+appwrite databases create-relationship-attribute --database-id "core" --collection-id "contacts" --key "contactId" --related-collection-id "users" --type "oneToOne"
 appwrite databases create-datetime-attribute --database-id "core" --collection-id "contacts" --key "createdAt" --required false --array false
 appwrite databases create-string-attribute --database-id "core" --collection-id "contacts" --key "alias" --size 64 --required false --array false
 
@@ -67,7 +67,7 @@ appwrite databases create-string-attribute --database-id "core" --collection-id 
 appwrite databases create-collection --database-id "core" --collection-id "devices" --name "Devices" --permissions 'read("any")' 'write("any")'
 
 appwrite databases create-string-attribute --database-id "core" --collection-id "devices" --key "deviceId" --size 36 --required true --array false
-appwrite databases create-relationship-attribute --database-id "core" --collection-id "devices" --key "userId" --related-collection-id "users" --type "oneToOne" --required true
+appwrite databases create-relationship-attribute --database-id "core" --collection-id "devices" --key "userId" --related-collection-id "users" --type "oneToOne"
 appwrite databases create-string-attribute --database-id "core" --collection-id "devices" --key "deviceType" --size 32 --required true --array false
 appwrite databases create-string-attribute --database-id "core" --collection-id "devices" --key "pushToken" --size 255 --required false --array false
 appwrite databases create-datetime-attribute --database-id "core" --collection-id "devices" --key "lastActive" --required false --array false
